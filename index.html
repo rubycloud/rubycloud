@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maintenance</title>
+    <title>En Mantenimiento</title>
     <style>
         * {
             margin: 0;
@@ -173,8 +173,8 @@
 <body>
     <div class="container">
         <div class="icon">🔧</div>
-        <h1>Under Maintenance</h1>
-        <p class="message">We're currently performing scheduled maintenance. We'll be back online shortly!</p>
+        <h1>Pagina en Mantenimiento</h1>
+        <p class="message">Esta pagina esta en mantenimiento, vuelve en otro momento!</p>
         
         <div class="countdown" id="countdown">
             <div class="timer-unit">
@@ -196,15 +196,15 @@
         </div>
 
         <footer>
-            Made by <a href="https://discord.gg/EYWtN39tmF" target="_blank">Velocity Studios</a>
+            Powered by <a href="https://discord.gg/An3xaCwyYa" target="_blank">RubyCloud</a>
         </footer>
     </div>
 
     <script>
         const CONFIG = {
             maintenanceEndTime: new Date('2025-11-15T12:00:00').getTime(), // Change this date and time
-            headingText: 'Under Maintenance',
-            messageText: 'We\'re currently performing scheduled maintenance. We\'ll be back online shortly!',
+            headingText: 'RubyCloud',
+            messageText: 'We\'Hey, Esta pagina esta en mantenimiento We\'Vuelve en otro momento!',
             backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // Hex or gradient
             accentColor: '#667eea'
         };
@@ -218,7 +218,7 @@
             const distance = CONFIG.maintenanceEndTime - now;
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<p style="color: #4CAF50; font-size: 18px;">✓ We\'re back online!</p>';
+                document.getElementById('countdown').innerHTML = '<p style="color: #4CAF50; font-size: 18px;">✓ 'Espera a que se anuncie la apertura!</p>';
                 return;
             }
 
@@ -237,4 +237,5 @@
         setInterval(updateCountdown, 1000);
     </script>
 </body>
+
 </html>
