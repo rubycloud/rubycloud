@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000;
+            background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 40% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            backdrop-filter: blur(10px);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .icon {
+            font-size: 64px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-40px, 40px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 20px); }
+        }
+
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .blob1 {
+            width: 400px;
+            height: 400px;
+            background: #667eea;
+            top: -100px;
+            left: -100px;
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .blob2 {
+            width: 350px;
+            height: 350px;
+            background: #764ba2;
+            bottom: -100px;
+            right: -50px;
+            animation: float2 10s ease-in-out infinite;
+        }
+
+        .blob3 {
+            width: 300px;
+            height: 300px;
+            background: #667eea;
+            top: 50%;
+            right: -100px;
+            animation: float3 12s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-unit {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .timer-label {
+            display: block;
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #999;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+
+            .countdown {
+                font-size: 20px;
+            }
+
+            .icon {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🔧</div>
+        <h1>Under Maintenance</h1>
+        <p class="message">We're currently performing scheduled maintenance. We'll be back online shortly!</p>
+        
+        <div class="countdown" id="countdown">
+            <div class="timer-unit">
+                <span id="days">00</span>
+                <span class="timer-label">Days</span>
+            </div>
+            <div class="timer-unit">
+                <span id="hours">00</span>
+                <span class="timer-label">Hours</span>
+            </div>
+            <div class="timer-unit">
+                <span id="minutes">00</span>
+                <span class="timer-label">Minutes</span>
+            </div>
+            <div class="timer-unit">
+                <span id="seconds">00</span>
+                <span class="timer-label">Seconds</span>
+            </div>
+        </div>
+
+        <footer>
+            Made by <a href="https://discord.gg/EYWtN39tmF" target="_blank">Velocity Studios</a>
+        </footer>
+    </div>
+
+    <script>
+        const CONFIG = {
+            maintenanceEndTime: new Date('2025-11-15T12:00:00').getTime(), // Change this date and time
+            headingText: 'Under Maintenance',
+            messageText: 'We\'re currently performing scheduled maintenance. We\'ll be back online shortly!',
+            backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // Hex or gradient
+            accentColor: '#667eea'
+        };
+
+        document.documentElement.style.setProperty('--accent', CONFIG.accentColor);
+        document.querySelector('h1').textContent = CONFIG.headingText;
+        document.querySelector('.message').textContent = CONFIG.messageText;
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = CONFIG.maintenanceEndTime - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<p style="color: #4CAF50; font-size: 18px;">✓ We\'re back online!</p>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
