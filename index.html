@@ -202,7 +202,7 @@
 
     <script>
         const CONFIG = {
-            maintenanceEndTime: new Date('2025-11-15T12:00:00').getTime(), // Change this date and time
+            maintenanceEndTime: new Date('2026-02-15T12:00:00').getTime(), // Change this date and time
             headingText: 'RubyCloud',
             messageText: 'We\'Hey, Esta pagina esta en mantenimiento We\'Vuelve en otro momento!',
             backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // Hex or gradient
@@ -218,7 +218,7 @@
             const distance = CONFIG.maintenanceEndTime - now;
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<p style="color: #4CAF50; font-size: 18px;">✓ 'Espera a que se anuncie la apertura!</p>';
+                document.getElementById('countdown').innerHTML = '<p style="color: #4CAF50; font-size: 18px;">✓we\'Espera a que se anuncie la apertura!</p>';
                 return;
             }
 
@@ -239,3 +239,4 @@
 </body>
 
 </html>
+
