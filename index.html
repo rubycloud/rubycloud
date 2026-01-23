@@ -1,242 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>En Mantenimiento</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RubyCloud | Hosting Minecraft Premium</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+      background: #07070a;
+      color: #e5e7eb;
+    }
+    a { text-decoration: none; color: inherit; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #000;
-            background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                              radial-gradient(circle at 40% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
-            backdrop-filter: blur(10px);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #fff;
-        }
+    :root {
+      --red: #dc2626;
+      --red-soft: #991b1b;
+      --card: #0f172a;
+      --border: #1e293b;
+    }
 
-        .container {
-            text-align: center;
-            padding: 60px 40px;
-            max-width: 600px;
-            width: 100%;
-        }
+    /* NAV */
+    header {
+      background: rgba(7,7,10,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav {
+      max-width: 1300px;
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav nav a {
+      margin-left: 22px;
+      opacity: .9;
+      font-weight: 500;
+    }
 
-        .icon {
-            font-size: 64px;
-            margin-bottom: 30px;
-            animation: pulse 2s infinite;
-        }
+    /* HERO */
+    .hero {
+      background:
+        radial-gradient(circle at top, rgba(220,38,38,.35), transparent 45%),
+        linear-gradient(#07070a, #020617);
+      padding: 130px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero span { color: var(--red); }
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      font-size: 1.2rem;
+      opacity: .9;
+    }
+    .cta {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 15px 34px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: var(--red);
+      box-shadow: 0 20px 40px rgba(220,38,38,.35);
+    }
+    .btn.alt {
+      background: transparent;
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+    /* SECTIONS */
+    section { padding: 100px 20px; }
+    .container { max-width: 1300px; margin: auto; }
+    h2 {
+      text-align: center;
+      font-size: 2.6rem;
+      margin-bottom: 70px;
+    }
 
-        @keyframes float1 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -30px); }
-        }
+    /* FEATURES */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 34px 30px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .feature:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 60px rgba(220,38,38,.15);
+    }
+    .feature h3 { color: var(--red); margin-bottom: 10px; }
 
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-40px, 40px); }
-        }
+    /* PLANS */
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+    .plan {
+      background: linear-gradient(180deg, #0b1224, #020617);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 38px 32px;
+      text-align: center;
+      position: relative;
+    }
+    .plan.popular::before {
+      content: "RECOMENDADO";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: bold;
+    }
+    .plan h3 { font-size: 1.4rem; margin-bottom: 14px; }
+    .price {
+      font-size: 2.6rem;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    .plan ul { list-style: none; }
+    .plan li { margin: 10px 0; opacity: .95; }
 
-        @keyframes float3 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 20px); }
-        }
+    /* TRUST */
+    .trust {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
 
-        .blob {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            pointer-events: none;
-        }
+    /* FAQ */
+    .faq {
+      max-width: 900px;
+      margin: auto;
+    }
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 16px;
+      cursor: pointer;
+    }
+    summary { font-weight: 600; }
 
-        .blob1 {
-            width: 400px;
-            height: 400px;
-            background: #667eea;
-            top: -100px;
-            left: -100px;
-            animation: float1 8s ease-in-out infinite;
-        }
-
-        .blob2 {
-            width: 350px;
-            height: 350px;
-            background: #764ba2;
-            bottom: -100px;
-            right: -50px;
-            animation: float2 10s ease-in-out infinite;
-        }
-
-        .blob3 {
-            width: 300px;
-            height: 300px;
-            background: #667eea;
-            top: 50%;
-            right: -100px;
-            animation: float3 12s ease-in-out infinite;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .message {
-            font-size: 18px;
-            color: #ccc;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .countdown {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            margin: 30px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .timer-unit {
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        .timer-label {
-            display: block;
-            font-size: 12px;
-            color: #999;
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-
-        footer {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            font-size: 14px;
-            color: #999;
-        }
-
-        footer a {
-            color: #667eea;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #764ba2;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 40px 20px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            .message {
-                font-size: 16px;
-            }
-
-            .countdown {
-                font-size: 20px;
-            }
-
-            .icon {
-                font-size: 48px;
-            }
-        }
-    </style>
+    footer {
+      background: #020617;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 50px 20px;
+      color: #9ca3af;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🔧</div>
-        <h1>Pagina en Mantenimiento</h1>
-        <p class="message">Esta pagina esta en mantenimiento, vuelve en otro momento!</p>
-        
-        <div class="countdown" id="countdown">
-            <div class="timer-unit">
-                <span id="days">00</span>
-                <span class="timer-label">Days</span>
-            </div>
-            <div class="timer-unit">
-                <span id="hours">00</span>
-                <span class="timer-label">Hours</span>
-            </div>
-            <div class="timer-unit">
-                <span id="minutes">00</span>
-                <span class="timer-label">Minutes</span>
-            </div>
-            <div class="timer-unit">
-                <span id="seconds">00</span>
-                <span class="timer-label">Seconds</span>
-            </div>
-        </div>
 
-        <footer>
-            Powered by <a href="https://discord.gg/An3xaCwyYa" target="_blank">RubyCloud</a>
-        </footer>
+<header>
+  <div class="nav">
+    <h2>RubyCloud</h2>
+    <nav>
+      <a href="#features">Características</a>
+      <a href="#planes">Planes</a>
+      <a href="#faq">FAQ</a>
+      <a href="#">Discord</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Hosting <span>Minecraft</span><br>potente, estable y 24/7</h1>
+  <p>Servidores optimizados, hardware real y soporte humano para que tu proyecto nunca se caiga.</p>
+  <div class="cta">
+    <a href="#planes" class="btn">Ver planes</a>
+    <a href="#" class="btn alt">Unirse a Discord</a>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <h2>¿Por qué RubyCloud?</h2>
+    <div class="features">
+      <div class="feature"><h3>⚡ Alto rendimiento</h3><p>CPU dedicadas y RAM real para máximo TPS.</p></div>
+      <div class="feature"><h3>🛡 Protección DDoS</h3><p>Protección avanzada incluida sin coste extra.</p></div>
+      <div class="feature"><h3>🚀 Activación instantánea</h3><p>Tu servidor listo en segundos.</p></div>
+      <div class="feature"><h3>🎧 Soporte real</h3><p>Atención directa por Discord 24/7.</p></div>
     </div>
+  </div>
+</section>
 
-    <script>
-        const CONFIG = {
-            maintenanceEndTime: new Date('2026-02-15T12:00:00').getTime(), // Change this date and time
-            headingText: 'RubyCloud',
-            messageText: 'We\'Hey, Esta pagina esta en mantenimiento We\'Vuelve en otro momento!',
-            backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // Hex or gradient
-            accentColor: '#667eea'
-        };
+<section id="planes">
+  <div class="container">
+    <h2>Planes RubyCloud</h2>
+    <div class="plans">
+      <div class="plan"><h3>Hierro</h3><div class="price">$1.75</div><ul><li>2GB RAM</li><li>10GB SSD</li><li>150% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Cobre</h3><div class="price">$3.00</div><ul><li>4GB RAM</li><li>20GB SSD</li><li>200% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan popular"><h3>Oro</h3><div class="price">$5.10</div><ul><li>6GB RAM</li><li>30GB SSD</li><li>250% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Más vendido</a></div>
+      <div class="plan"><h3>Redstone</h3><div class="price">$6.80</div><ul><li>8GB RAM</li><li>40GB SSD</li><li>300% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Lapislázuli</h3><div class="price">$10.00</div><ul><li>12GB RAM</li><li>50GB SSD</li><li>400% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Diamante</h3><div class="price">$13.00</div><ul><li>16GB RAM</li><li>70GB SSD</li><li>450% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Esmeralda</h3><div class="price">$17.00</div><ul><li>20GB RAM</li><li>80GB SSD</li><li>450% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Netherita</h3><div class="price">$20.40</div><ul><li>24GB RAM</li><li>90GB SSD</li><li>500% CPU</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Ónix</h3><div class="price">$25.50</div><ul><li>30GB RAM</li><li>100GB SSD</li><li>CPU ∞</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Ámbar</h3><div class="price">$30.60</div><ul><li>36GB RAM</li><li>120GB SSD</li><li>CPU ∞</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Topacio</h3><div class="price">$34.00</div><ul><li>40GB RAM</li><li>150GB SSD</li><li>CPU ∞</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+      <div class="plan"><h3>Supremo</h3><div class="price">$50.00</div><ul><li>RAM ∞</li><li>Storage ∞</li><li>CPU ∞</li><li>Online 24/7</li></ul><a class="btn" href="#">Contratar</a></div>
+    </div>
+  </div>
+</section>
 
-        document.documentElement.style.setProperty('--accent', CONFIG.accentColor);
-        document.querySelector('h1').textContent = CONFIG.headingText;
-        document.querySelector('.message').textContent = CONFIG.messageText;
+<section id="faq">
+  <div class="container">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq">
+      <details><summary>¿Los servidores son 24/7?</summary><p>Sí, todos nuestros planes están activos 24/7.</p></details>
+      <details><summary>¿Puedo cambiar de plan?</summary><p>Puedes escalar tu plan en cualquier momento.</p></details>
+      <details><summary>¿Incluye soporte?</summary><p>Soporte técnico real vía Discord.</p></details>
+    </div>
+  </div>
+</section>
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = CONFIG.maintenanceEndTime - now;
+<footer>
+  <p>© 2026 RubyCloud — Hosting sin límites.</p>
+</footer>
 
-            if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<p style="color: #4CAF50; font-size: 18px;">✓we\'Espera a que se anuncie la apertura!</p>';
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
 </body>
-
 </html>
-
